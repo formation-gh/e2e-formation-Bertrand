@@ -52,6 +52,12 @@ test.describe('formation-gh-api site', () => {
 
     await page.waitForLoadState('networkidle');
 
+    const password = process.env.E2E_PASSWORD;
+    expect(password, 'La variable E2E_PASSWORD doit être configurée.').toBeTruthy();
+    await page.getByLabel('Mot de passe').fill(password);
+    await page.getByRole('button', { name: 'Se connecter' }).click();
+    await expect(page.getByRole('heading', { name: 'Les utilisateurs' })).toBeVisible();
+
     expect(consoleErrors, `Erreurs console détectées: ${consoleErrors.join(', ')}`).toHaveLength(0);
     expect(failedRequests, `Requêtes échouées: ${failedRequests.join(', ')}`).toHaveLength(0);
   });
