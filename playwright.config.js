@@ -14,6 +14,7 @@ module.exports = defineConfig({
   ],
   use: {
     baseURL: BASE_URL,
+    screenshot: 'on',
     trace: 'on-first-retry',
   },
   projects: [
