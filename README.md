@@ -24,3 +24,5 @@ Définissez la variable d’environnement `E2E_PASSWORD` avant d’exécuter les
 ```bash
 npm test
 ```
+
+Une capture d’écran est enregistrée après chaque test dans `test-results/` et consultable dans le rapport HTML Playwright.
