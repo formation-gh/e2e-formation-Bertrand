@@ -19,6 +19,8 @@ npx playwright install --with-deps chromium
 
 ## Exécution des tests
 
+Définissez la variable d’environnement `E2E_PASSWORD` avant d’exécuter les tests. Dans GitHub Actions, configurez-la comme secret du dépôt portant ce nom.
+
 ```bash
 npm test
 ```
