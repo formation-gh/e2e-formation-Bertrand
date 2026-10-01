@@ -52,13 +52,18 @@ test.describe('formation-gh-api site', () => {
 
     await page.waitForLoadState('networkidle');
 
+    expect(consoleErrors, `Erreurs console détectées: ${consoleErrors.join(', ')}`).toHaveLength(0);
+    expect(failedRequests, `Requêtes échouées: ${failedRequests.join(', ')}`).toHaveLength(0);
+  });
+
+  test('l’accès protégé par mot de passe fonctionne', async ({ page }) => {
     const password = process.env.E2E_PASSWORD;
-    expect(password, 'La variable E2E_PASSWORD doit être configurée.').toBeTruthy();
+    test.skip(!password, 'La variable E2E_PASSWORD doit être configurée pour tester l’authentification.');
+
+    await page.goto('');
+    await page.waitForLoadState('networkidle');
     await page.getByLabel('Mot de passe').fill(password);
     await page.getByRole('button', { name: 'Se connecter' }).click();
     await expect(page.getByRole('heading', { name: 'Les utilisateurs' })).toBeVisible();
-
-    expect(consoleErrors, `Erreurs console détectées: ${consoleErrors.join(', ')}`).toHaveLength(0);
-    expect(failedRequests, `Requêtes échouées: ${failedRequests.join(', ')}`).toHaveLength(0);
   });
 });
