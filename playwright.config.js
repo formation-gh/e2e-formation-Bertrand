@@ -8,7 +8,10 @@ module.exports = defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
-  reporter: 'html',
+  reporter: [
+    [process.env.CI ? 'github' : 'list'],
+    ['html', { open: 'never' }],
+  ],
   use: {
     baseURL: BASE_URL,
     trace: 'on-first-retry',
