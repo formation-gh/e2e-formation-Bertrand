@@ -54,7 +54,7 @@ test.describe('formation-gh-api site', () => {
 
     await page.getByLabel('Mot de passe').fill('1234');
     await page.getByRole('button', { name: 'Se connecter' }).click();
-    await expect(page.getByRole('heading', { name: 'Gestion des congés' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Les utilisateurs' })).toBeVisible();
 
     expect(consoleErrors, `Erreurs console détectées: ${consoleErrors.join(', ')}`).toHaveLength(0);
     expect(failedRequests, `Requêtes échouées: ${failedRequests.join(', ')}`).toHaveLength(0);
